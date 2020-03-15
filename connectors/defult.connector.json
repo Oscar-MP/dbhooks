@@ -1,0 +1,12 @@
+{
+  "connector": {
+    "alias": "Default Connector",
+    "type": "mysql",
+    "endpoint": "127.0.0.1",
+    "port": 3000,
+    "mysql": {
+      "user": "admin",
+      "password": "1234",
+    }
+  }
+}
