@@ -1,0 +1,16 @@
+{
+  "alias": "default",
+  "permission": 0,
+  "connector": "default",
+  "action": ["get", "put", "update", "remove"],
+  "mysql": {
+    "table": "default_table",
+    "select": "",
+    "orderBy": "",
+    "where": ""
+  },
+  "messages": {
+    "onSuccess": "Action preformed successfully",
+    "onFailure": "Failed to preform the action"
+  }
+}

@@ -1,4 +1,4 @@
-<?php
+  <?php
 
   class Connector {
 
@@ -13,11 +13,26 @@
     ];
 
     function __construct( $objct ) {
-
+      $this->fillClass($objct);
     }
 
     function fillClass ( $obj ) {
       // This function fills the variables of the clase getting the data from an object
+      if (array_key_exists('alias', $obj)) {
+        $this->alias = $obj['alias'];
+      }
+
+      if (array_key_exists('type', $obj)) {
+        $this->type = $obj['type'];
+      }
+
+      if (array_key_exists('endpoint', $obj)) {
+        $this->endpoint = $obj['endpoint'];
+      }
+
+      if (array_key_exists('port', $obj)) {
+        $this->port = $obj['port'];
+      }
 
     }
 
@@ -33,4 +48,31 @@
     }
   }
 
+
+  class MySQLConnector extends Connector {
+
+    private $db;
+    private $user;
+    private $pass;
+    public $charset = 'utf8';
+    public $options = [
+      PDO::ATTR_ERRMODE             => PDO::ERRMODE_EXCEPTION,
+      PDO::ATTR_DEFAULT_FETCH_MODE  => PDO::FETCH_ASSOC,
+      PDO::ATTR_EMULATE_PREPARES    => false
+    ];
+
+    function __construct (){
+
+    }
+
+    function setDSN () {
+      return 'mysql:host=' . $this->endpoint . ';dbname=' . $this->db . ';charset=' . $this->charset;
+    }
+
+    function getUser()            { return $this->user;   }
+    function setUser($user)       { $this->user = $user;  }
+    function getPassword()        { return $this->pass;   }
+    function setPassword($pass)   { $this->pass = $pass;  }
+
+  }
 ?>
