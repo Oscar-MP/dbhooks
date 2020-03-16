@@ -17,7 +17,10 @@ error_reporting(E_ALL);
 
   // Dependiendo del dbhook usaremos un connector u otro
 
-  $res = new Response();
+  $res    = new Response();
+  $client = array(
+    "permissionLevel" => 0
+  );
 
 
   if ( filter_has_var(INPUT_GET, 'hook')) {
@@ -28,8 +31,32 @@ error_reporting(E_ALL);
         * Must first identify the hook, then laod the connector
         * Watch for permissions and stablish mysql connection. Then
         * we preform the action.
+        *
+        * Quizá sería mejor añadir un nivel de permisos para cada acción dentro del
+        * hook, en vez de un nivel de permisos para todo el hook
         */
-        $hook = Hook::getHook('default');
+        $hook = Hook::getHook($_GET['hook']);
+
+        // Check if we have enough permissions for accessing this hook
+        // Gestión temporal, esto cambiará cuando se añada la autenticación y los módulos de seguridad.
+
+        if ($client['permissionLevel'] < $hook->getPermissionLevel()) {
+          $res->send(400, 'You have not enough permissions.');
+          exit();
+        }
+
+        // Getting the right connector
+        // .. code for getting the connector.
+        var_dump($_CONNECTORS_);
+
+
+        // Stablish the mysql connection
+
+        // .. mysql stuff in here
+
+        // EVALUATE THE ACTION AND PREFORM IT
+        // IF EVERYTHING IS OK
+        
 
     } else {
       $res->send(400, "Could not proceed. Missing action");

@@ -6,6 +6,8 @@
     private $permission;
     private $connector;
     private $action;
+    public $mysql = array();
+    public $messages = array();
 
 
     function __construct($arrayObject = null) {
@@ -19,7 +21,14 @@
     }
 
     function setParamsFromArray( $input ) {
-
+        // This function must fill the object with data from an array.
+        if (is_array($input)) {
+          foreach ($input as $element => $value) {
+            if ( property_exists('Hook', $element)) {
+              $this->$element = $value;
+            }
+          }
+        }
     }
 
     function getActions() {
@@ -67,8 +76,12 @@
     static function getHook($alias) {
       // This method gets the information from a json file and generates a hook object
       // if everything is ok the method will return a Hook object.
-      $hook = self::filterHookByParam(getAllFileContentInFolder('hooks'), 'alias', $alias);
 
+      // WARNING This method is insecure, someone could see files from direcctories changing
+      // the hook alias for a path like: hook = ../<some rute from the app folder>
+      
+      $hook = self::filterHookByParam(getAllFileContentInFolder('hooks'), 'alias', $alias);
+      return new Hook($hook[0]);
     }
 
     static function filterHookByParam( $hooks, $key, $param ) {

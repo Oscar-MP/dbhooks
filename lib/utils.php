@@ -46,4 +46,11 @@
     return false;
   }
 
+
+  function filterMultidimensionalArrayByKey($array, $param, $key) {
+    // Returns an array that matches the specified key in a param
+    return array_filter($array, function ( $item ) use ($param, $key){
+      return $array[$key] == $param;
+    })
+  }
 ?>
