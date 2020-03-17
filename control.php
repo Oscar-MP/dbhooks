@@ -7,12 +7,12 @@ error_reporting(E_ALL);
   include_once('./models/Connector.php');
   include_once('./models/Hook.php');
   include_once('./models/Response.php');
+  include_once('./models/MySQL.php');
   include_once('./lib/connector-lib.php');
   include_once('./lib/utils.php');
 
   // Obtenemos toda la configuración (conectores y dbhooks)
   // Y todos los parametros que requiere la api
-  $_CONNECTORS_ = loadAllConnectors();
   $_DBHOOKS_    = [];
 
   // Dependiendo del dbhook usaremos un connector u otro
@@ -47,16 +47,38 @@ error_reporting(E_ALL);
 
         // Getting the right connector
         // .. code for getting the connector.
-        var_dump($_CONNECTORS_);
-
+        $hook->setConnector();
 
         // Stablish the mysql connection
 
         // .. mysql stuff in here
 
+        $mysql = new MySQL();
+        if ($mysql->connect($hook->getConnector())) {
+          echo "Connection stablished";
+        } else {
+          // Error could not stablish MySQL Conexion. Maybe we should log this
+          echo "Could not connecto to MySQL";
+
+          exit;
+        }
         // EVALUATE THE ACTION AND PREFORM IT
         // IF EVERYTHING IS OK
-        
+
+        switch ($_GET['action']) {
+          case 'get':
+            // Here we a just going to select some data from a table
+            break;
+          case 'put':
+            // Here we will add new data to a table ( maybe we can merge the update and put)
+            break;
+          case 'update';
+            // Here we update data. Only update
+            break;
+          case 'remove':
+            // Here we will remove info from a table
+            break;
+        }
 
     } else {
       $res->send(400, "Could not proceed. Missing action");

@@ -25,7 +25,7 @@
 
   }
 
-  function getAllFileContentInFolder ( $folderPath ) {
+  function scan_folder ( $folderPath ) {
     // This function returns an array where every element
     // represents the content of every file inside a specific folder.
     // If the function cannot retrieve the info it will return a false.
@@ -47,10 +47,29 @@
   }
 
 
-  function filterMultidimensionalArrayByKey($array, $param, $key) {
+  function filterArrayByParam($array, $param, $key) {
     // Returns an array that matches the specified key in a param
     return array_filter($array, function ( $item ) use ($param, $key){
-      return $array[$key] == $param;
-    })
+      return $item[$key] == $param;
+    });
+  }
+
+  function filterObjectsByParam($array, $param, $key) {
+    // Needs an array of objects and returns a single object matching the provided param -> key
+
+    foreach ( $array as $object ) {
+      if (is_object($object)) {
+        if (property_exists( get_class($object) , $param )) {
+          if ( $object->{$param} == $key ) return $object;
+        }
+      }
+    }
+    return false;
+
+
+  }
+
+  function generateRandomChars( $len = 5 ) {
+
   }
 ?>

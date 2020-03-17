@@ -1,7 +1,8 @@
 {
   "alias": "default",
   "permission": 0,
-  "connector": "default",
+  "connector": "02AS9AF92JSG9",
+  "connectorAlias": "default",
   "action": ["get", "put", "update", "remove"],
   "mysql": {
     "table": "default_table",

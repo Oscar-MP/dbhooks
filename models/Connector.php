@@ -2,6 +2,7 @@
 
   class Connector {
 
+    public $id;
     public $alias;
     public $type;
     public $endpoint; // Could be an IP or a path.
@@ -18,6 +19,10 @@
 
     function fillClass ( $obj ) {
       // This function fills the variables of the clase getting the data from an object
+      if (array_key_exists('id', $obj)) {
+        $this->id = $obj['id'];
+      }
+
       if (array_key_exists('alias', $obj)) {
         $this->alias = $obj['alias'];
       }
@@ -46,6 +51,12 @@
     function json () {
       // Codifica el objeto connector en un json para guardarlo en un fichero.
     }
+
+    static function filterConnectorsByAlias() {}
+
+    static function getConnectorByAlias() {}
+
+    static function getConnectorByID() {}
   }
 
 
@@ -65,7 +76,7 @@
 
     }
 
-    function setDSN () {
+    function getDSN () {
       return 'mysql:host=' . $this->endpoint . ';dbname=' . $this->db . ';charset=' . $this->charset;
     }
 
