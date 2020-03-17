@@ -1,0 +1,11 @@
+/** TODO LIST **/
+
+- Authentication system
+- Tokens
+- MYSQL STUFF:
+  · Mysql wrapper class
+  · Multi queries ( subqueries in the connector ). This will
+    work by adding a parameter "subqueries" into the hook file
+    that may refer to another connector alias or to add the raw
+    queries in there directly ( maybe better cuz I suppose using another Connector
+    inside a connector may lead into cross db problems)
