@@ -57,6 +57,12 @@
     static function getConnectorByAlias() {}
 
     static function getConnectorByID() {}
+
+    static function saveConnector ( $connector ) {}
+
+    static function updateConnector ( $connector ) {}
+
+    static function removeConnector ( $connector ) {}
   }
 
 

@@ -120,5 +120,11 @@
         return $hook[$key] == $param;
       });
     }
+
+    static function saveHook($hook) {}
+
+    static function updateHook($hook) {}
+
+    static function removeHook($hook) {}
   }
 ?>

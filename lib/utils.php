@@ -29,6 +29,8 @@
     // This function returns an array where every element
     // represents the content of every file inside a specific folder.
     // If the function cannot retrieve the info it will return a false.
+
+    // WARNING THIS FUNCTIONS MUST BE REMOVED
     $output = array();
 
     if (is_dir($folderPath)) {
