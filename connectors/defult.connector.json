@@ -6,6 +6,7 @@
     "endpoint": "127.0.0.1",
     "port": 3306,
     "mysql": {
+      "db": "undefined",
       "user": "admin",
       "password": "1234"
     }

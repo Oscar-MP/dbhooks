@@ -52,10 +52,9 @@ error_reporting(E_ALL);
         // Stablish the mysql connection
 
         // .. mysql stuff in here
-
         $mysql = new MySQL();
         if ($mysql->connect($hook->getConnector())) {
-          echo "Connection stablished";
+          // Connection with MySQL Stablished
         } else {
           // Error could not stablish MySQL Conexion. Maybe we should log this
           echo "Could not connecto to MySQL";
@@ -68,6 +67,7 @@ error_reporting(E_ALL);
         switch ($_GET['action']) {
           case 'get':
             // Here we a just going to select some data from a table
+            $response_data = $mysql->get( $hook );
             break;
           case 'put':
             // Here we will add new data to a table ( maybe we can merge the update and put)

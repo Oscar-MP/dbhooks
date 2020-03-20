@@ -78,8 +78,13 @@
       PDO::ATTR_EMULATE_PREPARES    => false
     ];
 
-    function __construct (){
+    function __construct ( $objct ){
+      $this->fillClass($objct);
 
+      // Must refactor this and extract it from the constructor 
+      $this->db = $objct['mysql']['db'];
+      $this->user = $objct['mysql']['user'];
+      $this->pass = $objct['mysql']['password'];
     }
 
     function getDSN () {

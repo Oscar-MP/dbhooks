@@ -33,7 +33,12 @@
     $full_path = CONNECTORS_PATH . '/' . $path;
 
     if ( file_exists($full_path)) {
-      return new Connector(json_decode(file_get_contents($full_path), true)['connector']);
+      $connector = json_decode(file_get_contents($full_path), true)['connector'];
+      if ($connector['type'] == 'mysql') { 
+        return new MySQLConnector($connector);
+      }
+
+      return new Connector($connector);
     }
     return false;
   }

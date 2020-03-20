@@ -74,4 +74,28 @@
   function generateRandomChars( $len = 5 ) {
 
   }
+
+
+  // Security functions
+
+  function filterInvalidPath($path, $options) {
+    // This function filters a given string to remove all potentiall attacks to cross directory.
+    // If we need to get a path and the client is able to manipulate it then we must ensure the user hasn't changed it
+    // in order to get access to an unallowed place.
+    // For example: Desired path: /connectors/<input>
+    //              Malformed path: /connectors/../../../../../etc/shadow
+
+    $default_options = array();
+
+    if (!$options['ALLOW_CHANGE_DIRECTORY']) {
+      // Removes all dots and slashes from the path
+
+    }
+
+    if (!$options['ALLOW_EXTENSIONS']) {
+      // Removes the extensión if it is in the path
+    }
+
+    return $path;
+  }
 ?>

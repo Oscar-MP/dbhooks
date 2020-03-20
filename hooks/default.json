@@ -1,11 +1,11 @@
 {
   "alias": "default",
   "permission": 0,
-  "connector": "02AS9AF92JSG9",
-  "connectorAlias": "default",
+  "connector": "ASD48A654F",
+  "connectorAlias": "custom",
   "action": ["get", "put", "update", "remove"],
   "mysql": {
-    "table": "default_table",
+    "table": "Coches",
     "select": "",
     "orderBy": "",
     "where": ""

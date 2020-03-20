@@ -3,12 +3,12 @@
   class MySQL {
 
     private $conexion; // Here is saved the MySQL conexion
+    protected $hook;
 
     function __construct() {}
 
     function connect( $mysql_connector ) {
       // This function sets the conection. A mysql connector is required thru parameter.
-
       if (!$mysql_connector instanceof MySQLConnector) {
         // The input is not a MySQL Connector
         return false;
@@ -18,7 +18,7 @@
         $this->conexion = new PDO(
           $mysql_connector->getDSN(),
           $mysql_connector->getUser(),
-          $mysql_connector->getPass(),
+          $mysql_connector->getPassword(),
           $mysql_connector->options
         );
 
@@ -32,7 +32,9 @@
 
     // MAIN METHODS
 
-    function get () {}
+    function get ( $hook ) {
+      // Select records from a table
+    }
 
     function put () {}
 
