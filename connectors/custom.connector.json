@@ -1,0 +1,14 @@
+{
+  "connector": {
+    "id": "ASD48A654F",
+    "alias": "Custom Connector",
+    "type": "mysql",
+    "endpoint": "127.0.0.1",
+    "port": 3306,
+    "mysql": {
+      "user": "phpmyadmin",
+      "password": "r00t",
+      "db": "cars"
+    }
+  }
+}
