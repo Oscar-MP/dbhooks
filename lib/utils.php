@@ -72,7 +72,11 @@
   }
 
   function generateRandomChars( $len = 5 ) {
+    if ($len <= 0 ) $len = 1; 
 
+    if (function_exists('openssl_random_pseudo_bytes')) {
+      return base64_encode(openssl_random_pseudo_bytes($len));
+    }
   }
 
 

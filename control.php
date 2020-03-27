@@ -68,6 +68,8 @@ error_reporting(E_ALL);
           case 'get':
             // Here we a just going to select some data from a table
             $response_data = $mysql->get( $hook );
+            $res->data = $response_data;
+            $res->send(200, "Hook launnched successfully");
             break;
           case 'put':
             // Here we will add new data to a table ( maybe we can merge the update and put)

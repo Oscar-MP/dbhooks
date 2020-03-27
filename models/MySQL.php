@@ -30,10 +30,19 @@
       }
     }
 
+    function disconnect() {
+      $this->conexion = null;
+    }
     // MAIN METHODS
 
     function get ( $hook ) {
       // Select records from a table
+
+      $table = $hook->mysql['table'];
+      $query = 'SELECT * FROM ' . $table;
+      
+      return $this->query($query);
+
     }
 
     function put () {}
@@ -44,11 +53,17 @@
 
 
     // UTILITY METHODS
-    function prepare( $query ) {
-      // Probably we don't need this.
-    }
-    function execute() {
+    function query( $query ) {
       // Executes a query
+      $stmt = $this->conexion->prepare($query);
+
+      if ($stmt && ($query_response = $stmt->execute())) {
+        $data = $stmt->fetch();
+        $stmt = null;
+
+        return $data;
+
+      }
     }
 
     function setCondition() {}
